@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "api-workshop"
+version = "0.1.0"
+description = ""
+authors = ["Felipe Sebben <felipesebben@yahoo.com.br>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.104.1"
+uvicorn = "^0.24.0.post1"
+taskipy = "^1.12.2"
+pytest = "^7.4.3"
+httpx = "^0.25.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.taskipy.tasks]
+
+run = "uvicorn main:app --reload"
+test = "pytest -v"
+kill = "kill -9 $(lsof -t -i:8000)"
