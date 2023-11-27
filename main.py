@@ -30,7 +30,7 @@ produtos: List[Dict[str, any]] = [
 # Criar rota principal
 @app.get("/")   # Request
 def ola_mundo(): # Response
-    return {"Olá": "Pessoal!"}
+    return {"Olá": "Mundo"}
 
 # Criar novo endpoint de lista de produtos
 @app.get("/produtos")
