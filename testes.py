@@ -20,3 +20,19 @@ def teste_ola_mundo_json():
     """
     response = client.get("/")
     assert response.json() == {"Olá": "Mundo"}
+
+
+def teste_listar_produtos_status_code():
+    """
+    Teste para verificar se a rota de listagem de produtos está funcionando.
+    """
+    response = client.get("/produtos")
+    assert response.status_code == 200 # Verifica se o status code é 200
+
+
+def test_tamanho_da_lista_de_produtos():
+    """
+    Teste para verificar se a rota de listagem de produtos está retornando a lista correta.
+    """
+    response = client.get("/produtos")
+    assert len(response.json()) == 3 # Verifica se a lista tem 3 itens
