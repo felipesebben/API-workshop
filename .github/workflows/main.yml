@@ -3,7 +3,7 @@ name: CI
 on: pull_request
 
 jobs:
-  test:
+  Continuous-Integration:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
