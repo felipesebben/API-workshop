@@ -39,3 +39,15 @@ def listar_produtos():
     Retorna lista de produtos.
     """
     return produtos
+
+# Criar novo endpoint para produto específico
+@app.get("/produtos/{id}")
+def buscar_produto(id: int):
+    """
+    Retorna produto específico.
+    """
+    for produto in produtos:
+        if produto["id"] == id:
+            return produto
+    return {"Status": 404,
+            "Mensagem": "Produto não encontrado."}
