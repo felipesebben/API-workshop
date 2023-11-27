@@ -43,7 +43,7 @@ def test_pega_um_produto():
     Teste para verificar se a rota de busca de produto está funcionando.
     """
     response = client.get("/produtos/1")
-    assert response.json() = {
+    assert response.json() == {
         "id": 1,
         "nome": "Smartphone",
         "descricao": "Um telefone que é inteligente",
