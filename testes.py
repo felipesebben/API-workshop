@@ -36,3 +36,16 @@ def test_tamanho_da_lista_de_produtos():
     """
     response = client.get("/produtos")
     assert len(response.json()) == 3 # Verifica se a lista tem 3 itens
+
+
+def test_pega_um_produto():
+    """
+    Teste para verificar se a rota de busca de produto está funcionando.
+    """
+    response = client.get("/produtos/1")
+    assert response.json() = {
+        "id": 1,
+        "nome": "Smartphone",
+        "descricao": "Um telefone que é inteligente",
+        "preco": 1500.00,
+    }
