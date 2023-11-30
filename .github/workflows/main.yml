@@ -26,11 +26,11 @@ jobs:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_PORT: ${{ secrets.DB_PORT }}
         run:
-          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> $TESTE
-          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> $TESTE
-          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> $TESTE
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> $TESTE
-          echo "DB_PORT=${{ secrets.DB_PORT }}" >> $TESTE
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> $GITHUB_ENV
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> $GITHUB_ENV
+          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> $GITHUB_ENV
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
+          echo "DB_PORT=${{ secrets.DB_PORT }}" >> $GITHUB_ENV
 
       - name: List directory contents
         run: ls -la
