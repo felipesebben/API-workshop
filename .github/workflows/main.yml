@@ -18,7 +18,7 @@ jobs:
       - name: Install requirements
         run: pip install -r requirements-dev.txt
 
-      - name: Add secrets
+      - name: Add environment variables
         env:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
@@ -26,11 +26,11 @@ jobs:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_PORT: ${{ secrets.DB_PORT }}
         run:
-          echo $POSTGRES_PASSWORD > .env
-          echo $POSTGRES_USER >> .env
-          echo $POSTGRES_DB >> .env
-          echo $DB_HOST >> .env
-          echo $DB_PORT >> .env
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> $TESTE
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> $TESTE
+          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> $TESTE
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> $TESTE
+          echo "DB_PORT=${{ secrets.DB_PORT }}" >> $TESTE
 
       - name: List directory contents
         run: ls -la
