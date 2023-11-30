@@ -25,15 +25,16 @@ jobs:
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_PORT: ${{ secrets.DB_PORT }}
-        run:
-          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> $GITHUB_ENV
-          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> $GITHUB_ENV
-          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> $GITHUB_ENV
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
-          echo "DB_PORT=${{ secrets.DB_PORT }}" >> $GITHUB_ENV
 
       - name: List directory contents
         run: ls -la
 
       - name: Run tests
-        run: pytest -v
+        run: |
+          echo "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
+          echo "POSTGRES_USER=${POSTGRES_USER}"
+          echo "POSTGRES_DB=${POSTGRES_DB}"
+          echo "DB_HOST=${DB_HOST}"
+          echo "DB_PORT=${DB_PORT}"
+
+          pytest -v
