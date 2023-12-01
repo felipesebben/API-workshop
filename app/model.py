@@ -11,3 +11,6 @@ class Produto(Base):
     titulo = Column(String, nullable=False)
     descricao = Column(String)
     preco = Column(Float, nullable=False)
+
+    class Config:
+        from_attributes = True
