@@ -746,68 +746,52 @@ def atualizar_produto(
 
 Criamos, primeiro, o ************router************, que fará um direcionamento das rotas. Substituímos nos decoradores o `ap` por `@router`.
 
-<aide>
-⚠️ a, endpoint, viewoisa!de>
 
-Teremos que tirar todo o trabalho de lista de função e colocar o ********************sqlalchemy******************** nelas. Precisamos, de padrão, saber qual o banco de dados estamos usando. Para isso, importamos o `ProdutosSchema`. Vamos usar o `get_db()` que criamos na config, que nos tira o trabalho de ter que ficar e fechando sessões em cada função.
+> ⚠️ Rota, endpoint, view = **mesma coisa**!
 
-Observe a mudança nas funções. `obter_produto()`, por exemplo, recebe o `produto_id`, inicia a sessão. Dentro do banco, faz-se a query, filtrando pelo id, buscando o primeiro, retornando `“produto não encontrado”` caso não seja bem-sucedido. E olha que interessante o `response_model=ProdutosSchema` : é a classe que criamos com o ****************pydantic,**************** que valida os dados nas operações CRUD que criamos com as APIs.
+Teremos que tirar todo o trabalho de lista de função e colocar o **sqlalchemy** nelas. Precisamos, de padrão, saber qual o banco de dados estamos usando. Para isso, importamos o `ProdutosSchema`. Vamos usar o `get_db()` que criamos na config, que nos tira o trabalho de ter que ficar e fechando sessões em cada função.
 
-## 6. Criar um banco gratuito no render!
+Observe a mudança nas funções. `obter_produto()`, por exemplo, recebe o `produto_id`, inicia a sessão. Dentro do banco, faz-se a query, filtrando pelo id, buscando o primeiro, retornando `“produto não encontrado”` caso não seja bem-sucedido. E olha que interessante o `response_model=ProdutosSchema` : é a classe que criamos com o **pydantic**, que valida os dados nas operações CRUD que criamos com as APIs.
+
+# 6. Criar um banco gratuito no render!
 
 É hora de libertarmo-nos do nosso banco em máquina local e subir às nuvens! O render nos permite criar um banco Postgres gratuito. Vamos:
 
-- **************Deletar************** nossa instância anterior.
-- ************Subir************ uma nova instância usando as variáveis que detrminamos loclmente.
+- **Deletar** nossa instância anterior.
+- **Subir** uma nova instância usando as variáveis que detrminamos loclmente.
 - Ir em  > PostgreSQL
     - Name: `postgres-deploy`
     - Database: `meu_banco`
     - User: `meu_usuario`
-- Selecione a versão Free (******sem****** necessidade de cartão de crédito). Temos direito a uma instância de 250mb de RAM + storage de 1GB.
+- Selecione a versão Free (**sem** necessidade de cartão de crédito). Temos direito a uma instância de 250mb de RAM + storage de 1GB.
 
-Agora, vá para as anotações de [Workshop | Do Jupyter Notebook pro Deploy ********************em Produção | Banco de Dados********************](https://www.notion.so/Workshop-Do-Jupyter-Notebook-pro-Deploy-em-Produ-o-Banco-de-Dados-f77a405d460e4c899e68b63a7631c602?pvs=21) e siga de lá momentaneamente.
+Agora, vá para as anotações de [Workshop | Do Jupyter Notebook pro Deploy em Produção | Banco de Dados](https://www.notion.so/Workshop-Do-Jupyter-Notebook-pro-Deploy-em-Produ-o-Banco-de-Dados-f77a405d460e4c899e68b63a7631c602?pvs=21) e siga de lá momentaneamente.
 
 ---
 
-## 7. Criar as variáveis de ambiente
+# 7. Criar as variáveis de ambiente
 
 Tal qual nossa aplicação para banco, crie os `.env.prod` e `.env.dev` e passe as respectivas variávies de ambiente. As do render devem estar em produção, enquanto as locais, no de dev.
 
-<aside>
-⚠️ Certifique-se que as variáveis estejam na ********************pasta raiz********************, caso contrário, o `load_dotenv(path=)` não irá encontrá-las!
+> ⚠️ Certifique-se que as variáveis estejam na **pasta raiz** caso contrário, o `load_dotenv(path=)` não irá encontrá-las!
 
-</aside>
-
-## 8. Colocar as variáveis no render
+# 8. Colocar as variáveis no render
 
 No dashboard da nossa `api-workshop` (ou do nome qe t tenhas colocdo), vá em mentdd secret file que armazena nossas variáveis da `.env`.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/b30ebaf3-eb23-4794-8612-ad005176c998/d546ea91-90c5-4b77-afbc-a08a89402ab3/Untitled.png)
+# 9. Testar o deploy da API!
 
-## 9. Testar o deploy da API!
-
-Feito isso, o render irá atualizar e verificar as condições para o novo ************deploy************. Clique n instânia da API, selecione l deplo*********Dploy latest commit********. Cruze os dedos (importante) e espere a confirmação do deploy no terminal. Se tudo der certo, acesse a url da API e faça uns testes de cada endpoint. Aqui vai um exemplo no ********POST********:
-
-![Testar o CRUD pelo POST…](https://prod-files-secure.s3.us-west-2.amazonaws.com/b30ebaf3-eb23-4794-8612-ad005176c998/7b90becb-0e1a-422c-8d84-14745cdc30bf/Untitled.png)
-
-Testar o CRUD pelo POST…
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/b30ebaf3-eb23-4794-8612-ad005176c998/cbe57d2d-2aaa-4009-8d13-650cd89618da/Untitled.png)
-
-…e aquele ******200****** bonito! Para garantir, vamos ver nopgadmin…
-
-![…e o prduto foi ***armazenado! Show!***](https://prod-files-secure.s3.us-west-2.amazonaws.com/b30ebaf3-eb23-4794-8612-ad005176c998/0057b710-d92c-4925-8f3c-9803f4fbe72d/Unitled.png)
-
-…e o prduto foi ***armazenado! Show!***
+Feito isso, o render irá atualizar e verificar as condições para o novo **deploy** Clique na instância da API, selecione **Dploy latest commit**. Cruze os dedos (importante) e espere a confirmação do deploy no terminal. Se tudo der certo, acesse a url da API e faça uns testes de cada endpoint.
 
 Feito iso, podemos:
 
- Deletar nossa magem postgres- Deletar a instância referente no ************render.************
+ Deletar nossa magem postgres- Deletar a instância referente no ***render.**
 
-## 10. Conclusão
+# 10. Conclusão
 
 Nossa, que evolução. O que temos até agora?
 
 - Uma API que executa todo o CRUD.
 - Um banco Postgres que armazena osendpoints das APIs.- E tudo ***disponível online**, sem necessidade de nehuma ***máquina estar rodando***.
-- Bônus enorme do pytests, pydantic, testes CI (tema de casa!),e pr-commit para garantir a alityo próximo passo, em um outrorepoitório, é implementar a raçãora isso, vamos de **************Airflow**************!
+- Bônus enorme do pytests, pydantic, testes CI (tema de casa!),e pr-commit para garantir a alityo próximo passo, em um outro repositório, é implementar a orquestração e, para tanto, vamos de **Airflow**!
+---
