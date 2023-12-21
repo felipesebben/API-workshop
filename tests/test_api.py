@@ -1,9 +1,8 @@
 import pytest
 from fastapi.testclient import TestClient  # Servidor de testes do FastAPI
-from app.main import app
-
 from pydantic import ValidationError
 
+from app.main import app
 
 # def teste_ola_mundo():
 #     """

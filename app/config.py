@@ -1,8 +1,8 @@
-from sqlalchemy import create_engine, Column, Integer, String, Float
-from sqlalchemy.orm import sessionmaker, declarative_base
-
 import os
+
 from dotenv import load_dotenv
+from sqlalchemy import Column, Float, Integer, String, create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
 
 load_dotenv(dotenv_path=".env.prod")  # Carrega as variáveis de ambiente do arquivo .env
 
@@ -22,6 +22,7 @@ engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 Base = declarative_base()
+
 
 # Definir função geradora que fornecesse sessão de dados e garante o fechamento da sessão
 def get_db():

@@ -1,7 +1,8 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Float, Integer, String
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
+
 
 # Criar classe Produto que herda de Base
 class Produto(Base):

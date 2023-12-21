@@ -1,12 +1,14 @@
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
 from typing import List
 
-from app.schema import ProdutosSchema
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+
 from app.config import SessionLocal, get_db
 from app.model import Produto
+from app.schema import ProdutosSchema
 
 router = APIRouter()
+
 
 # Criar rota principal
 @router.get("/")  # Request

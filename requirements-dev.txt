@@ -7,3 +7,5 @@ python-dotenv
 psycopg2-binary
 pre-commit
 pytest
+black
+isort
